@@ -32,7 +32,7 @@
         <?php
           $result = [
             [
-              'title' => 'Fantasy',
+              'title' => 'Fantasy lol',
               'img' => 'tmc1',
               'location' => 'metaverse/fantasy'
             ],
