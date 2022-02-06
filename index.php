@@ -6,12 +6,30 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Welcome to meta - Facebook</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   </head>
   <body>
-    <nav>
+    <!-- <nav>
       <img src="./meta-logo.png" alt="logo-meta" width="100" height="20">
+    </nav> -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="./meta-logo.png" alt="logo-meta" width="100" height="20"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="dashboard/index.php">Dashboard</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </nav>
-
     <header>
       <div class="header__container">
         <img src="./ip13pro_mockup.png" alt="mockup" class="left__header__img left__animation" height="900">
@@ -29,33 +47,37 @@
         <div class="choose">
           <h1>Choose your Metaverse</h1>
           <div class="top__main">
-        <?php
-          $result = [
-            [
-              'title' => 'Fantasy lol',
-              'img' => 'tmc1',
-              'location' => 'metaverse/fantasy'
-            ],
-            [
-              'title' => 'Blockman',
-              'img' => 'tmc2',
-              'location' => 'metaverse/blockman'
-            ],
-            [
-              'title' => 'Party',
-              'img' => 'tmc3',
-              'location' => 'metaverse/party'
-            ]
-          ];
+          <?php
+            // $result_dummy = [
+            //   [
+            //     'title' => 'Fantasy',
+            //     'img' => 'tmc1',
+            //     'location' => 'metaverse/fantasy'
+            //   ],
+            //   [
+            //     'title' => 'Blockman',
+            //     'img' => 'tmc2',
+            //     'location' => 'metaverse/blockman'
+            //   ],
+            //   [
+            //     'title' => 'Party',
+            //     'img' => 'tmc3',
+            //     'location' => 'metaverse/party'
+            //   ],
+            // ];
+            include 'config.php';
 
-          foreach ($result as $key => $value) {
-            echo '<div class="tmc__container">';
-            echo '<div class="tm__content '.$value['img'].'" onclick="location.href=`'.$value['location'].'.php`">';
-            echo '<h1>'.$value['title'].'</h1>';
-            echo '</div>';
-            echo '</div>';
-          }
-        ?>
+            $result = mysqli_query($mysqli, "SELECT * FROM metaverse");
+
+            while($row = mysqli_fetch_array($result)){
+
+              echo '<div class="tmc__container">';
+              echo '<div class="tm__content '.$row['image'].'" onclick="location.href=`'.$row['location'].'.php`">';
+              echo '<h1>'.$row['title'].'</h1>';
+              echo '</div>';
+              echo '</div>';
+            }
+          ?>
           </div>
         </div>
       </div>
